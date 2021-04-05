@@ -4,21 +4,35 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
+      Login: {
+        screens: {
+          Login: 'login',
+        }
+      },
+      SignUp: {
+        screens: {
+          SignUp: 'sign up',
+        }
+      },
       Root: {
         screens: {
-          TabOne: {
+          Read: {
             screens: {
-              TabOneScreen: 'one',
+              Read: 'one',
             },
           },
-          TabTwo: {
+          Write: {
             screens: {
-              TabTwoScreen: 'two',
+              Write: 'two',
+            },
+          },
+          Creation: {
+            screens: {
+              Creation: 'three',
             },
           },
         },
       },
-      NotFound: '*',
     },
   },
 };
