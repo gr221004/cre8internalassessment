@@ -25,7 +25,6 @@ const Login = () => {
 
   const navigation = useNavigation();
 
-render()
   return (
     // Form that allows existing users to sign in using their email address and password
 
