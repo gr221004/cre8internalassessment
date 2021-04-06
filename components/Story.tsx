@@ -9,14 +9,12 @@ export default class Story {
     public characters: Array<Characters>;
     public script: string;
     static storiesArray: Array<Story> = [tutorialStory];
-    public key: string;
 
     constructor (storyName: string, characters: Array<Characters>, script: string) {
         this.storyName = storyName;
         this.storyId = Story.storyCount++;
         this.script = script;
         this.characters = characters;
-        this.key = this.storyId.toString();
     };
 
     static getStoryName(storiesArray: Array<Story>, storyNumber: number) {

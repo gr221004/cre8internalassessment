@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, Button, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Button, SafeAreaView, TouchableOpacity } from 'react-native';
 import firebase from 'firebase';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 import Story from '../components/Story';
 import Characters from '../components/Characters';
-import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 var user = firebase.auth().currentUser;
 const itemWidth = Math.round(windowWidth * 0.7);
@@ -15,50 +16,19 @@ const tutorialStory = new Story("Tutorial Story", tutorialStoryCharacters, scrip
 
 const Read = () => {
 
+    const navigation = useNavigation();
 
     const [storyChosen] = React.useState('');
-
     const storiesArray = Story.storiesArray;
-    // // on() method, continuous retrieval
-    // firebase.database().ref('data').on('value',(snap)=>{
-    //   console.log(snap.val());
-    // });
-    // // once() method, retrieves once
-    // firebase.database().ref('data').on('value',(snap)=>{
-    //   console.log(snap.val());
-    // });
+
 
 
 
     var story = Story.getStoryName(Story.storiesArray, parseInt(storyChosen));
 
-    // click to go to story?
-
-
-    // {Platform.OS === 'android' ? ( <button />) : null };
-
-    // {Platform.OS === 'ios' ? ( <button />) : null };
-
-    // allReference.on('value', snapshot => {
-    //   console.log('User data: ', snapshot.val());
-    // });
-
-    // database()
-    // .ref('/users/123')
-    // .update({
-    //   age: 32,
-    // })
-    // .then(() => console.log('Data updated.'));
-
     function load(storyChosen: string) {
         // storyChosen = React.useState('');
     }
-
-    // var name="Name";
-
-    // database().ref('data').set({name:name});
-
-    // update(values: { [key: string]
 
     firebase.auth().onAuthStateChanged(function (user) {
         /* For each of your app’s pages that need information about the signed-in user, 
@@ -78,11 +48,6 @@ const Read = () => {
         }
     });
 
-    const itemSeparator = () => <View style={{
-        height: 2,
-        width: "100%",
-        backgroundColor: "rgba(0,0,0,0.5)",
-    }} />
 
 
 
@@ -91,44 +56,55 @@ const Read = () => {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
     return (
-        <View style={styles.container}>
-            <View >
+        <View >
+            <View style={{flexDirection: "row-reverse"}}>
+            <FontAwesome name="sign-out" size={25} color={"white"} style={{
+            shadowOpacity: 30,
+            shadowRadius: 20,
+            shadowColor: "darkgray",
+            backgroundColor: "darkgray",
+            borderBottomLeftRadius: 10,
+            height: 30,
+            width: 35,
+            paddingLeft: 5,
+          }}
+        onPress={() => {firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log('User Logged Out!');
+        }).catch(function (error) {
+            // An error happened.
+            console.log(error);
+        }), navigation.navigate('Login')}}>
+
+          </FontAwesome>
+          </View>
+
                 {/* < FlatList
-                    data={storiesArray}
-                    renderItem={({ item }) => (
-                        <View>
-                            <AntDesign name="arrowright" style={{
-                                padding: 10,
-                                height: 40,
-                                width: 40,
-                                alignItems: 'center',
-                                borderLeftColor: "gray",
-                                borderLeftWidth: 1,
-                                borderRightWidth: 2,
-                                borderRightColor: "black",
-                                color: "black",
-                                backgroundColor: "white",
-                            }}
-                                size={30}
-                                alignItems="center"
-                                // onPress={() => { }}
-                            />
-                            <Text style={styles.itemLabel}>{item.storyName}</Text>
-                        </View>
-                    )}
-                /> */}
+            data={storiesArray}
+            renderItem={({ item }) => (
+                <View>
+                    <AntDesign name="arrowright" style={{
+                        padding: 10,
+                        height: 40,
+                        width: 40,
+                        alignItems: 'center',
+                        borderLeftColor: "gray",
+                        borderLeftWidth: 1,
+                        borderRightWidth: 2,
+                        borderRightColor: "black",
+                        color: "black",
+                        backgroundColor: "white",
+                    }}
+                        size={30}
+                        alignItems="center"
+                        // onPress={() => { }}
+                    />
+                    <Text style={styles.itemLabel}>{item.storyName}</Text>
+                </View>
+            )}
+        /> */}
 
-            </View>
-            <View >
 
-                <Button title="Sign out" onPress={() => firebase.auth().signOut().then(() => {
-                    // Sign-out successful.
-                    console.log('User Logged Out!');
-                }).catch(function (error) {
-                    // An error happened.
-                    console.log(error);
-                })} />
-            </View>
         </View>
     );
 }

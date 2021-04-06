@@ -39,7 +39,7 @@ const Login = () => {
             fontSize: 120,
             color: "white",
             textShadowRadius: 45,
-            textShadowColor: "white",
+            textShadowColor: "magenta",
             textShadowOffset: { width: 3, height: 5 },
             fontWeight: '600',
           }}>
@@ -123,7 +123,7 @@ const Login = () => {
                 if (errorCode === 'auth/wrong-password') {
                   alert('Wrong password.');
                 } else {
-                  alert(errorMessage);
+                  console.log(errorMessage);
                 }
                 console.log(error);
               }),

@@ -1,14 +1,18 @@
 import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import firebase from 'firebase';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 import Story from '../components/Story';
 import Characters from '../components/Characters';
+import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 
 var user = firebase.auth().currentUser;
 
 const Write = () => {
+
+    const navigation = useNavigation();
 
     const [storyName, setStoryName] = React.useState('');
     const [characterName, setNewCharacterName] = React.useState('');
@@ -20,7 +24,28 @@ const Write = () => {
     return < View
      // save button that on press calls save method, which saves stuff to script and parses to read
     >
+             <View style={{flexDirection: "row-reverse"}}>
+            <FontAwesome name="sign-out" size={25} color={"white"} style={{
+            shadowOpacity: 30,
+            shadowRadius: 20,
+            shadowColor: "darkgray",
+            backgroundColor: "darkgray",
+            borderBottomLeftRadius: 10,
+            height: 30,
+            width: 35,
+            paddingLeft: 5,
+          }}
+        onPress={() => {firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log('User Logged Out!');
+        }).catch(function (error) {
+            // An error happened.
+            console.log(error);
+        }), navigation.navigate('Login')}}>
 
+          </FontAwesome>
+          </View>
+            
     </View>;
 
 }
