@@ -4,8 +4,10 @@ import firebase from 'firebase';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 import Story from '../components/Story';
 import Characters from '../components/Characters';
-import { FontAwesome } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import {Editor } from '../components/code_editor/Editor';
+import { setupLanguage } from '../components/code_editor/setup'
 
 
 var user = firebase.auth().currentUser;
@@ -16,6 +18,8 @@ const Write = () => {
 
     const [storyName, setStoryName] = React.useState('');
     const [characterName, setNewCharacterName] = React.useState('');
+
+
     
   
     // persists data for offline usage
@@ -42,6 +46,22 @@ const Write = () => {
             // An error happened.
             console.log(error);
         }), navigation.navigate('Login')}}>
+
+          </FontAwesome>
+          </View>
+
+          <View style={{flexDirection: "row-reverse"}}>
+            <FontAwesome name="arrow-right" size={25} color={"white"} style={{
+            shadowOpacity: 30,
+            shadowRadius: 20,
+            shadowColor: "darkgray",
+            backgroundColor: "darkgray",
+            borderBottomLeftRadius: 10,
+            height: 30,
+            width: 35,
+            paddingLeft: 5,
+          }}
+        onPress={() => setupLanguage()}>
 
           </FontAwesome>
           </View>

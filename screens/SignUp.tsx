@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, ImageBackground, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
-import { Feather } from '@expo/vector-icons';
+import Feather from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import firebase from 'firebase';
 

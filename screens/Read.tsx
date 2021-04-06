@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 import Story from '../components/Story';
 import Characters from '../components/Characters';
-import { FontAwesome } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 var user = firebase.auth().currentUser;

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
-import { Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import firebase from 'firebase';
 
@@ -175,7 +176,6 @@ const Login = () => {
             backgroundColor: "white",
           }}
             size={20}
-            alignItems="center"
             onPress={() => {
               auth.sendPasswordResetEmail(resetEmail).then(function () {
               }).catch(function (error) { console.log(error) })

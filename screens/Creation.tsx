@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Image, TextInput, Button, StyleSheet, Text, FlatList, TouchableOpacity, SafeAreaView, ScrollView, ViewPagerAndroidBase } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Story from '../components/Story';
 import Characters from '../components/Characters';
 import firebase from 'firebase';
-import { FontAwesome } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 const Creation = () => {
