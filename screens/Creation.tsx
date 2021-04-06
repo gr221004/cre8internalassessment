@@ -13,11 +13,10 @@ const Creation = () => {
 
     const navigation = useNavigation();
 
-    const [storyName, setStoryName] = React.useState('');
-    const [characterName, setNewCharacterName] = React.useState('');
-    const [characterVisual, setNewCharacterVisual] = React.useState('');
+    var [storyName, setStoryName] = React.useState('');
+    var [characterName, setNewCharacterName] = React.useState('');
+    var [characterVisual, setNewCharacterVisual] = React.useState('');
     var script: string;
-
     var characterList: Array<Characters> = [(new Characters("Narrator", "0"))];
 
     function restartArray(characterList: Array<Characters>) {
@@ -64,6 +63,7 @@ const Creation = () => {
                     Cre8ion corner
         </Text>
             </View>
+
             <View
                 style={{
                     borderBottomColor: 'lightblue',
@@ -71,32 +71,85 @@ const Creation = () => {
                 }}
             />
 
-            <TextInput
-                placeholder="Story name"
-                value={storyName}
-                onChangeText={setStoryName}
-                style={styles.input && styles.inputField && styles.inputContainer}
+            <View
+                style={{
+                    borderBottomColor: 'black',
+                    borderBottomWidth: 1,
+                }}
+            />
+
+            <View
+                style={{
+                    borderBottomColor: 'lightblue',
+                    borderBottomWidth: 20,
+                }}
+            />
+
+
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+
+            <View
+                    style={{
+                        borderRightColor: 'lightblue',
+                        borderRightWidth: 600,
+                    }}
+                />
+
+                <TextInput
+                    placeholder=" Story name"
+                    value={storyName}
+                    onChangeText={setStoryName}
+                    style={{
+                        fontSize: 25,
+                        backgroundColor: "white",
+                        height: 40,
+                        width: 300,
+                        borderColor: "gray",
+                        borderRadius: 8,
+                        textAlign: "left",
+                    }}
+                />
+            </View>
+            <View
+                style={{
+                    borderBottomColor: 'lightblue',
+                    borderBottomWidth: 20,
+                }}
             />
 
             <View style={{ flexDirection: "row", alignItems: "center" }}>
 
+            <View
+                    style={{
+                        borderRightColor: 'lightblue',
+                        borderRightWidth: 320,
+                    }}
+                />
                 <TextInput
-                    placeholder="Character name"
+                    placeholder=" Character name"
                     value={characterName}
                     onChangeText={setNewCharacterName}
                     style={{
                         fontSize: 25,
                         backgroundColor: "white",
                         height: 40,
-                        width: 480,
+                        width: 300,
                         borderColor: "gray",
                         borderRadius: 8,
+                        textAlign: "left",
+                        alignItems: "center"
                     }}
 
                 />
+                <View
+                    style={{
+                        borderRightColor: 'lightblue',
+                        borderRightWidth: 50,
+                    }}
+                />
 
                 <TextInput
-                    placeholder="Character visual number"
+                    placeholder=" Character visual number"
                     value={characterVisual}
                     onChangeText={setNewCharacterVisual}
                     keyboardType={'numeric'}
@@ -104,15 +157,32 @@ const Creation = () => {
                         fontSize: 25,
                         backgroundColor: "white",
                         height: 40,
-                        width: 480,
+                        width: 300,
                         borderColor: "gray",
                         borderRadius: 8,
+                        textAlign: "left",
+                        alignItems: "center"
                     }}
                 />
 
-                <Button title="Add character" onPress={() => characterList.push(new Characters(characterName, characterVisual))}>
-                    Add character
-    </Button>
+                <View
+                    style={{
+                        borderRightColor: 'lightblue',
+                        borderRightWidth: 50,
+                    }}
+                />
+                <View style={{ width: 180, height: 40, flexDirection: "row", alignItems: "center" }}>
+                    <Button title="Add character" onPress={() => {
+                        characterList.push(new Characters(characterName, characterVisual)),
+                        characterName = "", characterVisual = ""
+                    }}>
+                        < Text style={{
+                            color: "white",
+                            textAlign: "center",
+                            alignItems: "center"
+                        }} > Add character </Text>
+                    </Button>
+                </View>
             </View>
 
             <View
@@ -121,19 +191,54 @@ const Creation = () => {
                     borderBottomWidth: 40,
                 }}
             />
-            <View style={{ paddingLeft: 20, width: 50, height: 20 }}>
-            <Text > Add all your characters before creating your story! </Text>
-            
-            <Button title="Create new story" onPress={() => (Story.storiesArray.push(new Story(storyName, characterList, script)), restartArray(characterList))}>
-                CREATE YOUR NEW STORY
+            <View style={{ alignItems: "center" }}>
+                <Text style={{
+                    color: "magenta",
+                    textShadowRadius: 60,
+                    textShadowColor: "magenta",
+                    textShadowOffset: { width: 3, height: 3 },
+                    textAlign: "center",
+                }}>
+                    Add all your characters before creating your story! </Text>
+
+                <View
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
+
+                <View style={{ width: 200, height: 40, alignItems: "center" }}>
+                    <Button title="Create new story" onPress={() => {
+                        (Story.storiesArray.push(new Story(storyName, characterList, script)), restartArray(characterList)),
+                            characterName = "", characterVisual = "", storyName = ""
+                    }}>
+                        Create your new story!
     </Button>
-    </View>
+                </View>
+            </View>
+
             <View
                 style={{
                     borderBottomColor: 'lightblue',
                     borderBottomWidth: 20,
                 }}
             />
+
+            <View
+                style={{
+                    borderBottomColor: 'black',
+                    borderBottomWidth: 1,
+                }}
+            />
+
+            <View
+                style={{
+                    borderBottomColor: 'lightblue',
+                    borderBottomWidth: 20,
+                }}
+            />
+
             <View >
                 < Text style={styles.title}> Character Visuals </Text>
                 < View style={{ flexDirection: "row", alignItems: "stretch" }}>
@@ -211,10 +316,25 @@ const Creation = () => {
                     />
                 </View>
             </View>
+
             <View
                 style={{
                     borderBottomColor: 'lightblue',
-                    borderBottomWidth: 40,
+                    borderBottomWidth: 20,
+                }}
+            />
+
+            <View
+                style={{
+                    borderBottomColor: 'black',
+                    borderBottomWidth: 1,
+                }}
+            />
+
+            <View
+                style={{
+                    borderBottomColor: 'lightblue',
+                    borderBottomWidth: 20,
                 }}
             />
 
@@ -222,221 +342,221 @@ const Creation = () => {
                 < Text style={styles.title}> Backgrounds </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyimages/backgrounds/bar.jpg')} />
                 < Text style={styles.backgroundLabel}> Bar </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/beach.jpg')} />
                 < Text style={styles.backgroundLabel}> Beach </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/bedroom1.jpg')} />
                 < Text style={styles.backgroundLabel}> Bedroom 1 </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/bedroom2.jpg')} />
                 < Text style={styles.backgroundLabel}> Bedroom 2 </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/cafeteria.png')} />
                 < Text style={styles.backgroundLabel}> Cafeteria </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/diner.png')} />
                 < Text style={styles.backgroundLabel}> Diner </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/diningroom.jpg')} />
                 < Text style={styles.backgroundLabel}> Dining Room </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/restaurant.jpg')} />
                 < Text style={styles.backgroundLabel}> Restaurant </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/homebathroom.jpg')} />
                 < Text style={styles.backgroundLabel}> Home Bathroom </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/kitchen.jpg')} />
                 < Text style={styles.backgroundLabel}> Kitchen 1 </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/kitchen2.jpg')} />
                 < Text style={styles.backgroundLabel}> Kitchen 2 </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/livingroom1.jpg')} />
                 < Text style={styles.backgroundLabel}> Living Room  1 </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/livingroom2.png')} />
                 < Text style={styles.backgroundLabel}> Living Room  2 </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/mall.jpg')} />
                 < Text style={styles.backgroundLabel}> Mall </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/movietheater.jpg')} />
                 < Text style={styles.backgroundLabel}> Movie Theater </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/park.jpg')} />
                 < Text style={styles.backgroundLabel}> Park </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/publicbathroom.png')} />
                 < Text style={styles.backgroundLabel}> Public Bathroom </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/school.jpg')} />
                 < Text style={styles.backgroundLabel}> School </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/street.jpg')} />
                 < Text style={styles.backgroundLabel}> Street </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/townhall.jpg')} />
                 < Text style={styles.backgroundLabel}> Town Hall </Text>
 
                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
                 <Image style={styles.bg} source={require('../storyImages/backgrounds/walkway.jpg')} />
                 < Text style={styles.backgroundLabel}> Walkway </Text>
 
-                 <View
-                style={{
-                    borderBottomColor: 'lightblue',
-                    borderBottomWidth: 20,
-                }}
-            />
+                <View
+                    style={{
+                        borderBottomColor: 'lightblue',
+                        borderBottomWidth: 20,
+                    }}
+                />
 
 
             </View>
